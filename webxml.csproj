@@ -7,4 +7,8 @@
   <ItemGroup>
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="SoapCore" Version="0.9.9.6" />
+  </ItemGroup>
+
 </Project>
