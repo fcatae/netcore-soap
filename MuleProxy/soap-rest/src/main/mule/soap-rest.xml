@@ -13,7 +13,7 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 		<wsc:connection wsdlLocation="http://localhost:5000/Service.asmx" service="ISampleService" port="BasicHttpBinding_ISampleService" address="http://localhost:5000/Service.asmx" />
 	</wsc:config>
 	<flow name="soap-restFlow" doc:id="8e1953f6-9b75-4c28-8005-50def9d560b0" >
-		<http:listener doc:name="Listener" doc:id="320e40d5-526c-48f1-ba78-2a0849e4be84" path="/ping" config-ref="HTTP_Listener_config"/>
+		<http:listener doc:name="/soap" doc:id="320e40d5-526c-48f1-ba78-2a0849e4be84" path="/soap" config-ref="HTTP_Listener_config"/>
 		<ee:transform doc:name="Transform Message" doc:id="ae6d7feb-9217-4dae-9287-24edc4888c0f" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
@@ -36,6 +36,19 @@ ns ns0 http://tempuri.org/
 
 ---
 payload.body.ns0#TestResponse.ns0#TestResult]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="soap-restFlow1" doc:id="7ad3e7ec-d499-4d36-9674-84b3b4f2b60a" >
+		<http:listener doc:name="/ping" doc:id="c4af72d1-ad9a-40ad-9dce-307395647357" config-ref="HTTP_Listener_config" path="/ping"/>
+		<ee:transform doc:name="Transform Message" doc:id="4196bb7e-c079-47e2-8b5f-8e7a03478a1c" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"msg": "hello world"
+}]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
 	</flow>
