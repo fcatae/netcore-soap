@@ -26,7 +26,7 @@ namespace webxml
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<ISampleService, SampleService>();
+            services.AddSingleton<IUsuarioService, UsuarioService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,7 +39,7 @@ namespace webxml
 
             // app.UseHttpsRedirection();
 
-            app.UseSoapEndpoint<ISampleService>("/Service.asmx", new BasicHttpBinding(), SoapSerializer.XmlSerializer);
+            app.UseSoapEndpoint<IUsuarioService>("/usuarios", new BasicHttpBinding(), SoapSerializer.XmlSerializer);
             
             // app.UseRouting();
 
