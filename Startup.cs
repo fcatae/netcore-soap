@@ -27,6 +27,7 @@ namespace webxml
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IUsuarioService, UsuarioService>();
+            services.AddSingleton<IPedidoService, PedidoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,6 +41,7 @@ namespace webxml
             // app.UseHttpsRedirection();
 
             app.UseSoapEndpoint<IUsuarioService>("/usuarios", new BasicHttpBinding(), SoapSerializer.XmlSerializer);
+            app.UseSoapEndpoint<IPedidoService>("/pedidos", new BasicHttpBinding(), SoapSerializer.XmlSerializer);
             
             // app.UseRouting();
 
